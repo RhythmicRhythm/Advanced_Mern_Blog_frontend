@@ -59,7 +59,7 @@ const UserAuthForm = ({ type }) => {
 
     console.log(formData);
 
-    // userAuthThroughServer(serverRoute, formData);
+    userAuthThroughServer(serverRoute, formData);
   };
 
   return (
