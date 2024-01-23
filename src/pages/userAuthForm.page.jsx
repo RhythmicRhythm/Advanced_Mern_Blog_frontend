@@ -2,7 +2,7 @@ import { useContext } from "react";
 import InputBox from "../components/input.component";
 import AnimationWrapper from "../common/page-animation";
 import googleIcon from "../imgs/google.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 import { storeInSession } from "../common/session";
@@ -70,6 +70,9 @@ const UserAuthForm = ({ type }) => {
   };
 
   return (
+    access_token ? 
+    <Navigate to="/" /> 
+    :
     <AnimationWrapper keyValue={type}>
       <section className="h-cover flex items-center justify-center">
         <Toaster />
