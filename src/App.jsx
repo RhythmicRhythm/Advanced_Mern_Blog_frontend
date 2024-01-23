@@ -10,7 +10,7 @@ export const UserContext = createContext({});
 
 const App = () => {
 
-  const [userAuth, setUserAuth] = useState();
+  const [userAuth, setUserAuth] = useState({});
 
   useEffect(() => {
       let userInSession = lookInSession("user");
@@ -18,7 +18,7 @@ const App = () => {
       userInSession ? setUserAuth(JSON.parse(userInSession)) : setUserAuth({acess_token: null})
   }, [])
 
-  
+
   return (
     <UserContext.Provider value={{userAuth, setUserAuth}}> 
     <Routes>

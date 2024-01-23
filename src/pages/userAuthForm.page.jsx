@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useContext } from "react";
 import InputBox from "../components/input.component";
 import AnimationWrapper from "../common/page-animation";
 import googleIcon from "../imgs/google.png";
@@ -6,9 +6,13 @@ import { Link } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
 import { storeInSession } from "../common/session";
+import { UserContext } from "../App";
 
 const UserAuthForm = ({ type }) => {
-  
+
+  let { userAuth: {access_token}, setUserAuth } = useContext(UserContext)
+
+  console.log(access_token);
 
   const userAuthThroughServer = (serverRoute, formData) => {
     axios
@@ -16,7 +20,7 @@ const UserAuthForm = ({ type }) => {
       .then(({ data }) => {
         console.log(data);
         storeInSession("user", JSON.stringify(data))
-        console.log(sessionStorage);
+        setUserAuth(data);
       })
       .catch(({ response }) => {
         toast.error(response.data.error);
